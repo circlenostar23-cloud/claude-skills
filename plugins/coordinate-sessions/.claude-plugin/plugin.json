@@ -1,0 +1,5 @@
+{
+  "name": "coordinate-sessions",
+  "version": "0.1.0",
+  "description": "Coordinate a batch of work as side sessions: plan, brief, review design notes, merge, hand over."
+}

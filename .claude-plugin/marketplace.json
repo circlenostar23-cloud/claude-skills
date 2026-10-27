@@ -1,0 +1,11 @@
+{
+  "name": "david-skills",
+  "owner": { "name": "David Levitz" },
+  "plugins": [
+    {
+      "name": "coordinate-sessions",
+      "source": "./plugins/coordinate-sessions",
+      "description": "Coordinate a batch of work as side sessions: plan, brief, review design notes, merge, hand over."
+    }
+  ]
+}
