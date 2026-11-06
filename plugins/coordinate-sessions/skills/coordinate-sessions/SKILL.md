@@ -22,8 +22,8 @@ cost, so cap them in every brief.
   earlier branch is merged. Read-only audits can run alongside anything.
 - Model: Sonnet (medium) for data edits, audits and mechanical work; Opus (medium) for design and logic. Don't switch a
   session's model mid-way (the cache is per model). Raise effort only if a session goes in circles.
-- The coordinator itself mostly routes, so it can run on Sonnet. If this session is on Opus, say so once in the
-  plan and let David decide.
+- The coordinator reviews: design notes, risky diffs, shared-file changes. Run it on Opus (medium) so that review
+  holds up. Save on usage through fewer wakes and a small context, not a cheaper coordinator model.
 - Show David a short table: session, items, model/effort, wave, depends on. Get one OK, then go.
 
 ## 2. Start sessions
