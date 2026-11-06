@@ -7,6 +7,11 @@ description: Run a batch of related work items as a fleet of side sessions coord
 
 You're the coordinator. You plan, brief, review and merge; the sessions do the work. Keep your own context small.
 
+**This chat is the coordinator.** When David says "start a new coordinator", "resume as coordinator" or "pick up from
+the handover", he means you: read the handover and coordinate from here. Never start a separate session to be the
+coordinator. That stacks one coordinator on another, and David has to relay every message through you. Side
+sessions are only for the work items.
+
 **Usage is the main cost.** Every session report wakes you, and each wake re-reads your whole conversation. So
 cost grows with (number of wakes) × (your context size). Keep both down: sessions report only at milestones,
 you answer progress notes with nothing, and you hand over early. The sessions' own model calls are the other big
@@ -76,4 +81,5 @@ At ~80k context, or when David pauses the fleet, write `coordinator-N-handover.m
 - the checklists still to apply
 - how merges are done.
 
-Mark paused items in the project's HANDOFF and withdraw their cards. The next coordinator starts by reading that note.
+Mark paused items in the project's HANDOFF and withdraw their cards. The next coordinator starts by reading that note. Write it for that reader: "the next coordinator" is the chat
+David opens and points at the note, which coordinates from there itself and starts no coordinator session.
