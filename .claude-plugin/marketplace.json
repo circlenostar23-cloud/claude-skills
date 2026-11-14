@@ -1,11 +1,18 @@
 {
   "name": "david-skills",
-  "owner": { "name": "David Levitz" },
+  "owner": {
+    "name": "David Levitz"
+  },
   "plugins": [
     {
       "name": "coordinate-sessions",
       "source": "./plugins/coordinate-sessions",
       "description": "Coordinate a batch of work as side sessions: plan, brief, review design notes, merge, hand over."
+    },
+    {
+      "name": "fable-prompt",
+      "source": "./plugins/fable-prompt",
+      "description": "Build a paste-ready Claude Fable prompt plus a facts-only context pack for any project and goal."
     }
   ]
 }

@@ -5,6 +5,7 @@ David's Claude Code plugin marketplace (`david-skills`). Plugins here work in an
 | Plugin | What it does |
 |---|---|
 | `coordinate-sessions` | Run a list of work items as a fleet of side sessions from one coordinator session (`/coordinate-sessions`). |
+| `fable-prompt` | Build a paste-ready Claude Fable prompt and a facts-only context pack for any project and goal (`/fable-prompt`). |
 
 ## Use it in a repo (works in cloud sessions)
 

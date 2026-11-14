@@ -1,0 +1,5 @@
+{
+  "name": "fable-prompt",
+  "version": "0.1.0",
+  "description": "Build a paste-ready Claude Fable prompt plus a facts-only context pack for any project and goal, so limited Fable usage goes to judgment, not exploration."
+}
