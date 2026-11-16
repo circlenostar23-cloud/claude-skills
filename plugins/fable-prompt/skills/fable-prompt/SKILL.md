@@ -41,6 +41,7 @@ Get these from the conversation first. Ask only for what's missing, in one `AskU
   - *Build*: edits allowed. Needs explicit permissions and a branch.
   - *Research*: web allowed.
 - **Deliverable:** where the output file goes, and whether a chat summary is wanted.
+- **Who carries it out:** will agents execute the result, for example through the `coordinate-sessions` skill? If so, which models will be available then? Assume Sonnet and Opus, not Fable, unless David says otherwise: his Fable access is often gone by the time the plan is executed.
 - **Off-limits:** private data, archives, compensation, anything the repos' `AGENTS.md` / `CLAUDE.md` protect.
 
 ## Step 2: Scout cheaply
@@ -53,6 +54,11 @@ Stay on the current model. Keep it to a handful of shell calls that measure; don
 - **Where effort goes:** sort `git log --since=<about 3 months> --format=%s` into rough keyword groups, and count rows in the main logs or trackers. A mismatch between where the work goes and where the outcomes come from is often the headline finding.
 - **Setup map:** rule files (`AGENTS.md`, `CLAUDE.md`), skills and agents directories, handoff or TODO files at the root. When there are several projects, diff their skill lists to see what one has that another lacks.
 - **Sample candidates:** 2 to 3 items with good outcomes and 2 to 3 with bad ones, for Fable to read closely. Check that each path exists.
+- **Git state:** the current branch and `git status --short` in each repo, so Fable knows which uncommitted or untracked files were already there before its run.
+- **Execution facts** (only when agents will carry out the result). These decide how sessions can be started, and Fable shouldn't spend usage finding them:
+  - which of the working files are git-ignored (`git check-ignore -v <paths>`, and read `.gitignore`), since a worktree won't contain them
+  - whether there is a test command
+  - what the agent docs say about commits, pushes, and scripts that reach outside services
 
 Respect the evidence and privacy rules in the projects' instruction files while you scout.
 
@@ -66,14 +72,14 @@ Rules for the pack:
 - **Sections:**
   1. Outcomes, with numbers and short quotes from the source
   2. Where the effort goes (a table)
-  3. Setup map: rules, skills, handoff files, and the section headings of the large files
+  3. Setup map: rules, skills, handoff files, the section headings of the large files, a one-line git state per repo (branch, count of uncommitted or untracked paths), and the execution facts if you gathered them
   4. Suggested sample paths, all checked
 - **Short.** Aim for 2 to 5 KB. It replaces exploration; it is not a summary of everything.
 - Leave out secrets, compensation and anything the repos mark private.
 
 ## Step 4: Draft the prompt
 
-Fill in the template below. Keep it short, around 400 to 700 words. Write it in plain words and give the goal, not procedures. Save it in the scratchpad for reference, and show it in full in your closing message inside a fenced `markdown` block, after `wrap_up` if the app uses it.
+Fill in the template below. Keep it short, around 400 to 700 words, or up to about 850 with the work-items block. Write it in plain words and give the goal, not procedures. Show it in full in your closing message inside a fenced `markdown` block, after `wrap_up` if the app uses it.
 
 ```markdown
 # Goal
@@ -101,12 +107,13 @@ I'm on a limited usage allowance, so read selectively:
 
 # What you may do
 
-<Review/plan:> This is a read-only <review>. You may read any file in scope and run read-only commands (<list>). Don't edit repo files, commit, or run <scripts that call outside services, named>.
+<Review/plan:> You may read any file in scope and run read-only commands (<list>). Writing the deliverable below is the only file write allowed. Don't modify or delete existing files, commit, or run <scripts that call outside services, named>.
+<Research: as review/plan, plus web search and fetching pages <on what topics or sites>. Don't sign in to sites, submit forms, or download files.>
 <Build: list the allowed actions by name, the branch to work on, the actions that still need a go-ahead, and the test command that must pass.>
 
 # Deliverable
 
-Write <one report / plan> to `<durable path>` (don't commit it), then give me a short summary in chat.
+Write <one report / plan> to `<durable path>`, then give me a short summary in chat. Aim for about <target length, e.g. 1,500 words>; any proposed rule or instruction text (`AGENTS.md`, `CLAUDE.md`, skills) should stay under <N> lines.
 
 <Structure, e.g.:>
 1. **Top findings, ranked by expected effect on <goal>.** For each: the problem, the evidence (paths, data), why it matters, the fix, and the rough effort. <N> findings are enough. Say how confident you are in each.
@@ -114,8 +121,19 @@ Write <one report / plan> to `<durable path>` (don't commit it), then give me a 
 3. **What's working:** things to keep, so a later cleanup doesn't break them.
 4. **Open questions:** what you couldn't judge from the files.
 
+<Only when agents will carry out the result:>
+Also write a work-items file to `<same path>-work-items.md` for a coordinator running my `coordinate-sessions` skill, and put a three-line pointer to it near the top of the report. Keep model routing out of the report itself. The coordinator reads only that file, so it must stand alone. Assume <the models available for execution, normally Sonnet and Opus, not Fable>. It needs:
+- Where this repo differs from a code repo with tests: ignored files a worktree won't have, no test suite, limits on commits, pushes or scripts.
+- The rules that go in every session's brief.
+- My own items (decisions, anything done by hand), each with what it blocks.
+- A table of sessions: items, model and effort, wave, depends on, worktree or main checkout. Use as few sessions as the work allows. An edit of a few lines is not a session.
+- For each session: what to read first with line ranges, the task, the files it may write, what done looks like, a check the coordinator can run, and a budget.
+Route by input size and stakes: the strongest available model for short, high-stakes drafting, and the cheapest reliable one for mechanical work over large inputs.
+
 Write for a reader who hasn't seen your tool calls or the files you opened. Put the key points first, use plain words and full sentences, and don't use labels you made up during the work.
 ```
+
+**Why a separate work-items file.** `coordinate-sessions` starts by reading an item list and follows any model table in it. A separate file gives it that directly, and the coordinator never loads the full report. A model table at the top of the report pushes the findings down and is the wrong shape for the coordinator.
 
 **Build runs at low or medium effort only.** Add this under a `# Finishing work` heading:
 
@@ -130,7 +148,8 @@ Close with these, adapted to the run:
 - Check usage about 10 minutes in. If it's burning fast, stopping costs less than letting it finish.
 - Make follow-ups specific, such as "expand finding 3". A bare "continue" makes it re-plan.
 - You can't see David's Fable quota, so don't estimate how much of it the run will use.
-- After the run, offer to delete the context pack.
+- **If Fable access is ending soon,** ask Fable in the same session to draft the one piece of the plan that most needs it, usually the short, high-stakes writing. Its context is already loaded, so that costs mostly the writing. Then have it update the work-items file so no session redoes the draft, and mark in the report which findings now have a draft.
+- After the run, offer to delete the context pack. Fable's report is uncommitted too: commit or move it if David keeps it, delete it if not.
 
 ## Don't
 
@@ -139,3 +158,4 @@ Close with these, adapted to the run:
 - Don't paste large file contents into the prompt. Point to paths.
 - Don't tell Fable to "think less" or "be brief in reasoning". Use effort for that.
 - Don't add stacked cautions. Name the forbidden actions once.
+- Don't ask for a model table inside the report. Routing goes in the work-items file.
