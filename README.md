@@ -7,20 +7,31 @@ David's Claude Code plugin marketplace (`david-skills`). Plugins here work in an
 | `coordinate-sessions` | Run a list of work items as a fleet of side sessions from one coordinator session (`/coordinate-sessions`). |
 | `fable-prompt` | Build a paste-ready Claude Fable prompt and a facts-only context pack for any project and goal (`/fable-prompt`). |
 
-## Use it in a repo (works in cloud sessions)
+## Install (user scope)
 
-Add to the repo's `.claude/settings.json`:
+Add to `~/.claude/settings.json`:
 
 ```json
 {
   "extraKnownMarketplaces": {
     "david-skills": { "source": { "source": "github", "repo": "circlenostar23-cloud/claude-skills" } }
   },
-  "enabledPlugins": { "coordinate-sessions@david-skills": true }
+  "enabledPlugins": {
+    "coordinate-sessions@david-skills": true,
+    "fable-prompt@david-skills": true
+  }
 }
 ```
 
-The same two keys in `~/.claude/settings.json` enable it for every local project.
+This turns the plugins on for every local project and worktree. After a release, run
+`claude plugin marketplace update david-skills` and then `claude plugin update <plugin>@david-skills`.
+
+### Don't enable these plugins in a repo's `.claude/settings.json`
+
+Repo settings only matter for cloud sessions, which clone just the repo. Neither plugin is useful there:
+`coordinate-sessions` starts side sessions from the desktop app, and `fable-prompt` scouts across local projects.
+Repo settings also create a separate project-scope install for every folder and worktree. Each one is pinned
+to the version current at the time and goes stale on the next release.
 
 ## Add a skill
 
