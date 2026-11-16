@@ -53,6 +53,7 @@ Stay on the current model. Keep it to a handful of shell calls that measure; don
 - **Ground truth for the goal:** the files that record *outcomes*, not just activity. Examples: an applications tracker with results, an incident log, test results, analytics, a changelog. Pull the actual numbers. A finding backed by outcomes beats generic advice, and this is the most valuable part of the pack.
 - **Where effort goes:** sort `git log --since=<about 3 months> --format=%s` into rough keyword groups, and count rows in the main logs or trackers. A mismatch between where the work goes and where the outcomes come from is often the headline finding.
 - **Setup map:** rule files (`AGENTS.md`, `CLAUDE.md`), skills and agents directories, handoff or TODO files at the root. When there are several projects, diff their skill lists to see what one has that another lacks.
+- **Open plans:** every handoff, work-items, plan and review file in the projects in scope that isn't marked done, with its date and whether work on it has started (`git log -1 --format=%cs -- <file>`, and a look at its first lines). Include a run-order file in the parent workspace's `docs/` if there is one. Reviews written days apart otherwise plan changes to the same files without knowing about each other.
 - **Sample candidates:** 2 to 3 items with good outcomes and 2 to 3 with bad ones, for Fable to read closely. Check that each path exists.
 - **Git state:** the current branch and `git status --short` in each repo, so Fable knows which uncommitted or untracked files were already there before its run.
 - **Execution facts** (only when agents will carry out the result). These decide how sessions can be started, and Fable shouldn't spend usage finding them:
@@ -72,7 +73,7 @@ Rules for the pack:
 - **Sections:**
   1. Outcomes, with numbers and short quotes from the source
   2. Where the effort goes (a table)
-  3. Setup map: rules, skills, handoff files, the section headings of the large files, a one-line git state per repo (branch, count of uncommitted or untracked paths), and the execution facts if you gathered them
+  3. Setup map: rules, skills, handoff files, the open plans with their dates and state, the section headings of the large files, a one-line git state per repo (branch, count of uncommitted or untracked paths), and the execution facts if you gathered them
   4. Suggested sample paths, all checked
 - **Short.** Aim for 2 to 5 KB. It replaces exploration; it is not a summary of everything.
 - Leave out secrets, compensation and anything the repos mark private.
@@ -126,6 +127,7 @@ Also write a work-items file to `<same path>-work-items.md` for a coordinator ru
 - Where this repo differs from a code repo with tests: ignored files a worktree won't have, no test suite, limits on commits, pushes or scripts.
 - The rules that go in every session's brief.
 - My own items (decisions, anything done by hand), each with what it blocks.
+- Overlaps with the open plans listed in the context pack: each file this work would write that another plan also writes, and which should go first.
 - A table of sessions: items, model and effort, wave, depends on, worktree or main checkout. Use as few sessions as the work allows. An edit of a few lines is not a session.
 - For each session: what to read first with line ranges, the task, the files it may write, what done looks like, a check the coordinator can run, and a budget.
 Route by input size and stakes: the strongest available model for short, high-stakes drafting, and the cheapest reliable one for mechanical work over large inputs.

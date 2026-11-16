@@ -21,6 +21,10 @@ cost, so cap them in every brief.
 - Read the repo's agent docs (`AGENTS.md`/`CLAUDE.md`), any brief from the previous coordinator (shared notes
   folder), and the item list (often a HANDOFF/TODO file). If the repo has a model/effort table, follow it. Read
   big files by their headings and the sections you need, not in full.
+- **Look for other open plans before you plan.** Check for a run-order file in the parent workspace's `docs/`,
+  and for any handoff, work-items, plan or review file in this repo that is newer than the last merge and not
+  marked done. If another plan writes a file yours does, tell David which files and which plan before you start
+  sessions, and propose who goes first.
 - **Check what kind of repo this is before you plan.** This skill's defaults assume a code repo with tests.
   - Are the files the items touch tracked? Run `git check-ignore -v <paths>`. A worktree has no ignored files,
     symlinked folders or virtualenv. An item that edits an ignored file runs in the main checkout
