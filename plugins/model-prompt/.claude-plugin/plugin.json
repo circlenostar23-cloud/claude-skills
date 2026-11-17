@@ -1,5 +1,5 @@
 {
-  "name": "fable-prompt",
-  "version": "0.3.0",
+  "name": "model-prompt",
+  "version": "0.4.0",
   "description": "Build a paste-ready prompt for a stronger Claude model (Fable, or Opus when preparing on Sonnet) plus a facts-only context pack for any project and goal, so the stronger model's usage goes to judgment, not exploration."
 }

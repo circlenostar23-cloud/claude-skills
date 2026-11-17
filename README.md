@@ -5,7 +5,7 @@ David's Claude Code plugin marketplace (`david-skills`). Plugins here work in an
 | Plugin | What it does |
 |---|---|
 | `coordinate-sessions` | Run a list of work items as a fleet of side sessions from one coordinator session (`/coordinate-sessions`). |
-| `fable-prompt` | Build a paste-ready prompt for a stronger model (Fable, or Opus when preparing on Sonnet) and a facts-only context pack for any project and goal (`/fable-prompt`). |
+| `model-prompt` | Build a paste-ready prompt for a stronger model (Fable, or Opus when preparing on Sonnet) and a facts-only context pack for any project and goal (`/model-prompt`). |
 
 ## Install (user scope)
 
@@ -18,7 +18,7 @@ Add to `~/.claude/settings.json`:
   },
   "enabledPlugins": {
     "coordinate-sessions@david-skills": true,
-    "fable-prompt@david-skills": true
+    "model-prompt@david-skills": true
   }
 }
 ```
@@ -29,7 +29,7 @@ This turns the plugins on for every local project and worktree. After a release,
 ### Don't enable these plugins in a repo's `.claude/settings.json`
 
 Repo settings only matter for cloud sessions, which clone just the repo. Neither plugin is useful there:
-`coordinate-sessions` starts side sessions from the desktop app, and `fable-prompt` scouts across local projects.
+`coordinate-sessions` starts side sessions from the desktop app, and `model-prompt` scouts across local projects.
 Repo settings also create a separate project-scope install for every folder and worktree. Each one is pinned
 to the version current at the time and goes stale on the next release.
 

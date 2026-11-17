@@ -25,7 +25,7 @@ These facts were checked against the `claude-api` skill on 2026-11-17 ("Migratin
 
 The thresholds and effort choices below are starting points from judgment, not measurements. Change them when a run shows they're off.
 
-- **When to skip the skill:** skip when all three hold: one repo is in scope, its in-scope text is under about 200 KB, and no agents will carry out the result. Opus reads that much for well under the cost of the prep. Give David a direct prompt of a few lines (goal, what's allowed, the deliverable) and stop.
+- **When to skip the skill:** skip when all three hold: one repo is in scope, its tracked files total under about 200 KB (`git ls-files -z | xargs -0 wc -c | tail -1`), and no agents will carry out the result. Don't skip if the goal depends on git-ignored working data, such as a `data/` folder: the tracked size doesn't measure that. Opus reads that much for well under the cost of the prep. Give David a direct prompt of a few lines (goal, what's allowed, the deliverable) and stop.
 - **Reading budget opener:** "Read what you need to be sure of a finding. These limits are about not wasting effort, not about reading less than the work needs:"
 - **How far to trust the pack:** treat it as a map. Add this line to "Start here" in place of the "Check a number" sentence: "A cheaper model wrote the pack, so confirm any number or path in it against the source before you rely on it, and tell me in the report if the pack was wrong."
 - **Subagents:** for a review of one or two repos, "Don't start subagents." For an audit across several repos, "Start at most two subagents, and only for reading that would otherwise fill your context."

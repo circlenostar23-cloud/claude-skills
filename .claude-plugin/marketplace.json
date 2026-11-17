@@ -10,8 +10,8 @@
       "description": "Coordinate a batch of work as side sessions: plan, brief, review design notes, merge, hand over."
     },
     {
-      "name": "fable-prompt",
-      "source": "./plugins/fable-prompt",
+      "name": "model-prompt",
+      "source": "./plugins/model-prompt",
       "description": "Build a paste-ready prompt for Claude Fable or Opus plus a facts-only context pack for any project and goal."
     }
   ]
