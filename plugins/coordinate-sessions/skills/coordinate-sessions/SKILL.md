@@ -107,6 +107,8 @@ At ~150k context (about 80k above where you started), or when David pauses the f
 - the checklists still to apply
 - how merges are done.
 
+You can't see your own token count, so the plugin's context-check hook measures it from the transcript and adds a
+"Context check" note after a tool call once you pass 150k, then again every 25k. Act on that note, not on a guess.
 Treat 150k as a soft trigger: hand over at the next phase boundary rather than mid-merge, and skip it when fewer
 than ~20 of your calls of work remain, since a handover costs about as much as 20 calls save.
 

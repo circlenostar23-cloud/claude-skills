@@ -1,0 +1,16 @@
+{
+  "description": "Tell the model its real context size: coordinators at ~150k, other sessions at ~200k.",
+  "hooks": {
+    "PostToolUse": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 \"${CLAUDE_PLUGIN_ROOT}/hooks/context_check.py\"",
+            "timeout": 10
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -4,7 +4,7 @@ David's Claude Code plugin marketplace (`david-skills`). Plugins here work in an
 
 | Plugin | What it does |
 |---|---|
-| `coordinate-sessions` | Run a list of work items as a fleet of side sessions from one coordinator session (`/coordinate-sessions`). |
+| `coordinate-sessions` | Run a list of work items as a fleet of side sessions from one coordinator session (`/coordinate-sessions`). Its context-check hook tells every session its real context size: coordinators at 150k (hand over), others at 200k (suggest a fresh session). |
 | `model-prompt` | Build a paste-ready prompt for a stronger model (Fable, or Opus when preparing on Sonnet) and a facts-only context pack for any project and goal (`/model-prompt`). |
 
 ## Install (user scope)
