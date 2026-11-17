@@ -12,8 +12,8 @@ the handover", he means you: read the handover and coordinate from here. Never s
 coordinator. That stacks one coordinator on another, and David has to relay every message through you. Side
 sessions are only for the work items.
 
-**Usage is the main cost.** Every session report wakes you, and each wake re-reads your whole conversation. So
-cost grows with (number of wakes) × (your context size). Keep both down: sessions report only at milestones,
+**Usage is the main cost.** Every session report wakes you, and every model call in a wake re-reads your whole
+conversation. So cost grows with (number of your calls) × (your context size). Keep both down: sessions report only at milestones,
 you answer progress notes with nothing, and you hand over early. The sessions' own model calls are the other big
 cost, so cap them in every brief.
 
@@ -101,11 +101,14 @@ Republish artifacts, send messages or post only when David says so. For an artif
 from main, publish to the same url with no icon, and log the version in the HANDOFF.
 
 ## 6. Hand over
-At ~80k context, or when David pauses the fleet, write `coordinator-N-handover.md` in the notes folder with:
+At ~150k context (about 80k above where you started), or when David pauses the fleet, write `coordinator-N-handover.md` in the notes folder with:
 - the state (main hash, what's merged, what's open or on hold)
 - David's decisions this round
 - the checklists still to apply
 - how merges are done.
+
+Treat 150k as a soft trigger: hand over at the next phase boundary rather than mid-merge, and skip it when fewer
+than ~20 of your calls of work remain, since a handover costs about as much as 20 calls save.
 
 Mark paused items in the project's HANDOFF and withdraw their cards. The next coordinator starts by reading that note. Write it for that reader: "the next coordinator" is the chat
 David opens and points at the note, which coordinates from there itself and starts no coordinator session.
