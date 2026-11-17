@@ -25,11 +25,11 @@ These facts were checked against the `claude-api` skill on 2026-11-17 ("Migratin
 
 The thresholds and effort choices below are starting points from judgment, not measurements. Change them when a run shows they're off.
 
-- **When to skip the skill:** skip when all three hold: one repo is in scope, its tracked files total under about 200 KB (`git ls-files -z | xargs -0 wc -c | tail -1`), and no agents will carry out the result. Don't skip if the goal depends on git-ignored working data, such as a `data/` folder: the tracked size doesn't measure that. Opus reads that much for well under the cost of the prep. Give David a direct prompt of a few lines (goal, what's allowed, the deliverable) and stop.
+- **When to skip the skill:** skip when all three hold: one repo is in scope, its tracked files total under 200 KB (`git ls-files -z | xargs -0 wc -c | tail -1`, leaving out any single tracked data or log file over 1 MB, which the target would skip anyway), and no agents will carry out the result. Don't skip if the goal depends on git-ignored working data, such as a `data/` folder: the tracked size doesn't measure that. Opus reads that much for well under the cost of the prep. Give David a direct prompt of a few lines (goal, what's allowed, the deliverable) and stop.
 - **Reading budget opener:** "Read what you need to be sure of a finding. These limits are about not wasting effort, not about reading less than the work needs:"
-- **How far to trust the pack:** treat it as a map. Add this line to "Start here" in place of the "Check a number" sentence: "A cheaper model wrote the pack, so confirm any number or path in it against the source before you rely on it, and tell me in the report if the pack was wrong."
-- **Subagents:** for a review of one or two repos, "Don't start subagents." For an audit across several repos, "Start at most two subagents, and only for reading that would otherwise fill your context."
-- **Effort:** medium for a review or research run with a bounded scope. High for a plan or audit across repos, and for any run that writes the work-items file.
+- **How far to trust the pack:** treat it as a map. Add this line to "Start here" in place of the sentence "Check a number against its source before you build a finding on it.": "A cheaper model wrote the pack, so confirm any number or path in it against the source before you rely on it, and tell me in the report if the pack was wrong."
+- **Subagents:** for a run on one or two repos, "Don't start subagents." For an audit across several repos, "Start at most two subagents, and only for reading that would otherwise fill your context."
+- **Effort:** medium for a review or research run with a bounded scope. High for a plan or audit across repos. High also for any run that writes the work-items file, even on one repo.
 - **Finishing text:** for build runs at medium, don't use the long paragraph in Step 4, which was written for Fable. Add this one line to the deliverable section instead: "Finish the whole task, not just the easy part of it, and report completion only when it's fully done."
 - **Executors to assume in the work-items block:** Sonnet and Haiku. Opus only for short, high-stakes drafting, unless David says otherwise.
 
@@ -43,4 +43,4 @@ You're probably Sonnet at medium effort. Two things about that, from the same `c
 ## Run instructions to add
 
 - Choose **Opus** in the model picker, with the effort from "Settings" above for this kind of run.
-- If the first run at medium comes back thin on evidence, re-run the same prompt at high before rewriting the prompt.
+- If a run at medium comes back thin on evidence, re-run the same prompt at high before rewriting the prompt. If it was already at high, rewrite the prompt rather than going to xhigh or max.
