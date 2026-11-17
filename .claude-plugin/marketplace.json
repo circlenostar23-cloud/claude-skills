@@ -12,7 +12,7 @@
     {
       "name": "fable-prompt",
       "source": "./plugins/fable-prompt",
-      "description": "Build a paste-ready Claude Fable prompt plus a facts-only context pack for any project and goal."
+      "description": "Build a paste-ready prompt for Claude Fable or Opus plus a facts-only context pack for any project and goal."
     }
   ]
 }
