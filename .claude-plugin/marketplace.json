@@ -13,6 +13,11 @@
       "name": "model-prompt",
       "source": "./plugins/model-prompt",
       "description": "Build a paste-ready prompt for Claude Fable or Opus plus a facts-only context pack for any project and goal."
+    },
+    {
+      "name": "global-rules",
+      "source": "./plugins/global-rules",
+      "description": "David's global rules for cloud sessions. On his Mac the same file loads as ~/.claude/CLAUDE.md."
     }
   ]
 }

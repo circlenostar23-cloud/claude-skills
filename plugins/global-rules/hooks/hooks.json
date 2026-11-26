@@ -1,0 +1,16 @@
+{
+  "description": "Load David's global rules into cloud sessions, which can't see ~/.claude/CLAUDE.md.",
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "sh \"${CLAUDE_PLUGIN_ROOT}/hooks/cloud_rules.sh\"",
+            "timeout": 10
+          }
+        ]
+      }
+    ]
+  }
+}
