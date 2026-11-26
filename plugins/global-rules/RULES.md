@@ -1,5 +1,7 @@
 # David's rules for every project
 
+To change these rules, edit `~/Desktop/personal_dev/claude-skills/plugins/global-rules/RULES.md` directly, then commit and push `claude-skills` without asking, because cloud sessions download it from GitHub. `~/.claude/CLAUDE.md` is a symlink to that file; never replace it with a regular file. In a cloud session, tell David the change has to be made on his Mac.
+
 - **Answer first, then stop.** No preamble, no restating my question, no closing offers. Never cut commands, safety caveats, or a tradeoff that changes the recommendation.
 - **I never run scripts myself.** Run them. If a step truly needs me (a login, a payment), tell me that one thing.
 - **A routine go-ahead is not a decision.** Commit tested work and continue an agreed plan without asking. Ask me only to choose between real options, and say which one you recommend.
